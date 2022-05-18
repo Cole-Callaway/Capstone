@@ -1,65 +1,94 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  font-family: Arial;
-}
-
 body {
-  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+hr {
+  width: 500px;
+}
+
+#board {
+  width: 700px;
+  height: 700px;
+  background-color: #cdc1b5;
+  border: 6px solid #bbada0;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  font-size: 7.5vmin;
-}
-
-#game-board {
-  --grid-size: 4;
-  --cell-size: 20vmin;
-  --cell-gap: 2vmin;
-
-  display: grid;
-  grid-template-rows: repeat(var(--grid-size), var(--cell-size));
-  grid-template-columns: repeat(var(--grid-size), var(--cell-size));
-  background-color: #ccc;
-  gap: var(--cell-gap);
-  border-radius: 1vmin;
-  padding: var(--cell-gap);
-  position: relative;
-}
-
-.cell {
-  background-color: #aaa;
-  border-radius: 1vmin;
+  flex-wrap: wrap;
 }
 
 .tile {
-  --x: 1;
-  --y: 2;
-  --background-lightness: 80%;
-  --text-lightness: 20%;
-  position: absolute;
+  width: 165px;
+  height: 165px;
+  border: 5px solid #bbada0;
+  font-size: 40px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: var(--cell-size);
-  height: var(--cell-size);
-  background-color: red;
-  border-radius: 1vmin;
-  top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
-  left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
-  font-weight: bold;
-  background-color: hsl(200, 50%, var(--background-lightness));
-  color: hsl(200, 25%, var(--text-lightness));
-  animation: show 200ms ease-in-out;
-  transition: 100ms ease-in-out;
+}
+/* colors*/
+.x2 {
+  background-color: #daf1fb;
+  color: white;
 }
 
-@keyframes show {
-  0% {
-    opacity: 0.5;
-    transform: scale(0);
-  }
+.x4 {
+  background-color: #5ac1ed;
+  color: white;
+}
+
+.x8 {
+  background-color: #1487b8;
+  color: white;
+}
+.x16 {
+  background-color: #4d2182;
+  color: white;
+}
+
+.x32 {
+  background-color: #4799eb;
+  color: white;
+}
+
+.x64 {
+  background-color: #105293;
+  color: white;
+}
+
+.x128 {
+  background-color: #1670ca;
+  color: white;
+}
+
+.x256 {
+  background-color: #0f6c95;
+  color: white;
+}
+
+.x512 {
+  background-color: #105293;
+  color: white;
+}
+
+.x1024 {
+  background-color: #0c3d6e;
+  color: white;
+}
+
+.x2048 {
+  background-color: #d37722;
+  color: white;
+  box-shadow: 0px 10px 40px 30px #d37722;
+}
+
+.x4096 {
+  background-color: #d37722;
+  color: white;
+}
+
+.x8192 {
+  background-color: black;
+  color: white;
 }
