@@ -188,11 +188,28 @@ function hasEmptyTile() {
 }
 
 function canMoveUp() {
+  let canMove = true;
+  let rowsWithNums = rows.filter((row, index) => {
+    let zero = 0;
+    if (row[i] === 0) {
+      zero + 1;
+    }
+    if (zero != 4) {
+      return row;
+    }
+  });
   for (let r = 0; r < rows; r++) {
     let rowOne = board[r];
+
     let rowTwo = board[r + 1];
-    for (let i = 0; i < rowOne; i++) {
-      if (rowOne[0] === rowTwo[0]) {
+
+    for (let i = 0; i < rowOne.length; i++) {
+      console.log(rowOne[i], "rowOne");
+      console.log(rowTwo[i], "rowTwo");
+      if (rowOne[i] === rowTwo[i]) {
+        if (rowOne[i] === 0 && rowTwo[i] === 0) {
+          return false;
+        }
         return true;
       }
     }
