@@ -1,7 +1,7 @@
-var board;
-var score = 0;
-var rows = 4;
-var columns = 4;
+let board;
+let score = 0;
+let rows = 4;
+let columns = 4;
 
 window.onload = function () {
   setGame();
@@ -9,10 +9,10 @@ window.onload = function () {
 
 function setGame() {
   // board = [
-  //     [2, 2, 2, 2],
-  //     [2, 2, 2, 2],
-  //     [4, 4, 8, 8],
-  //     [4, 4, 8, 8]
+  //   [2, 2, 2, 2],
+  //   [2, 2, 2, 2],
+  //   [4, 4, 8, 8],
+  //   [4, 4, 8, 8],
   // ];
 
   board = [
@@ -31,7 +31,7 @@ function setGame() {
       document.getElementById("board").append(tile);
     }
   }
-  //create 2 to begin the game
+
   setTwo();
   setTwo();
 }
@@ -183,3 +183,5 @@ function hasEmptyTile() {
   }
   return false;
 }
+
+function canMoveUp() {}
