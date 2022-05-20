@@ -2,7 +2,6 @@ let board;
 let score = 0;
 let rows = 4;
 let columns = 4;
-
 window.onload = function () {
   setGame();
 };
@@ -22,6 +21,7 @@ function setGame() {
     [0, 0, 0, 0],
   ];
 
+  console.log(board);
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       let tile = document.createElement("div");
@@ -59,6 +59,8 @@ document.addEventListener("keyup", (e) => {
     setTwo();
   } else if (e.code == "ArrowUp") {
     slideUp();
+    let canMove = canMoveUp();
+    console.log(canMove);
     setTwo();
   } else if (e.code == "ArrowDown") {
     slideDown();
@@ -162,6 +164,7 @@ function setTwo() {
     let r = Math.floor(Math.random() * rows);
     let c = Math.floor(Math.random() * columns);
     if (board[r][c] == 0) {
+      // checkForGameOver();
       board[r][c] = 2;
       let tile = document.getElementById(r.toString() + "-" + c.toString());
       tile.innerText = "2";
@@ -184,4 +187,27 @@ function hasEmptyTile() {
   return false;
 }
 
-function canMoveUp() {}
+function canMoveUp() {
+  for (let r = 0; r < rows; r++) {
+    let rowOne = board[r];
+    let rowTwo = board[r + 1];
+    for (let i = 0; i < rowOne; i++) {
+      if (rowOne[0] === rowTwo[0]) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// function checkForGameOver() {
+//   let zeros = 0;
+//   for (let r = 0; r < rows; r++) {
+//     for (let c = 0; c < columns; c++) {
+//       if (zeros === null) {
+//         alert("Game Over");
+//         document.removeEventListener("keyup");
+//       }
+//     }
+//   }
+// }
