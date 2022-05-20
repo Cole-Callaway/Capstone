@@ -60,8 +60,9 @@ document.addEventListener("keyup", (e) => {
   } else if (e.code == "ArrowUp") {
     slideUp();
     let canMove = canMoveUp();
-    console.log(canMove);
-    setTwo();
+    if (canMove) {
+      setTwo();
+    }
   } else if (e.code == "ArrowDown") {
     slideDown();
     setTwo();
@@ -189,30 +190,28 @@ function hasEmptyTile() {
 
 function canMoveUp() {
   let canMove = true;
-  let rowsWithNums = board.filter((row, i) => {
+  let rowsWithNums = board.filter((row) => {
     console.log(row, "row");
     let zero = 0;
     for (let r = 0; r < row.length; r++) {
       if (row[r] == 0) {
-        zero + 1;
+        zero = zero + 1;
       }
     }
     console.log(zero, "zero");
-    if (zero < 4) {
+    if (zero != 4) {
       return row;
     }
-    return;
   });
   console.log(rowsWithNums, "rowsWithNums");
 
   for (let r = 0; r < rows; r++) {
-    let rowOne = board[r];
-
-    let rowTwo = board[r + 1];
+    let rowOne = rowsWithNums[r];
+    let rowTwo = rowsWithNums[r + 1];
 
     for (let i = 0; i < rowOne.length; i++) {
-      console.log(rowOne[i], "rowOne");
-      console.log(rowTwo[i], "rowTwo");
+      // console.log(rowOne[i], "rowOne");
+      // console.log(rowTwo[i], "rowTwo");
       if (rowOne[i] === rowTwo[i]) {
         if (rowOne[i] == 0 && rowTwo[i] == 0) {
           return false;
