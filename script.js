@@ -60,6 +60,7 @@ document.addEventListener("keyup", (e) => {
   } else if (e.code == "ArrowUp") {
     slideUp();
     let canMove = canMoveUp();
+    console.log(canMove);
     if (canMove) {
       setTwo();
     }
@@ -192,6 +193,9 @@ function canMoveUp() {
   let canMove = true;
   let rowsWithNums = board.filter((row) => {
     console.log(row, "row");
+    if (rowsWithNums.length > 0) {
+      return false;
+    }
     let zero = 0;
     for (let r = 0; r < row.length; r++) {
       if (row[r] == 0) {
@@ -204,15 +208,15 @@ function canMoveUp() {
     }
   });
   console.log(rowsWithNums, "rowsWithNums");
-
-  for (let r = 0; r < rows; r++) {
+  for (let r = 0; r < rows.length - 1; r++) {
     let rowOne = rowsWithNums[r];
     let rowTwo = rowsWithNums[r + 1];
-
-    for (let i = 0; i < rowOne.length; i++) {
+    // console.log(rowOne, "rowOne");
+    // console.log(rowTwo, "rowTwo");
+    for (let i = 0; i < rowOne.length - 1; i++) {
       // console.log(rowOne[i], "rowOne");
       // console.log(rowTwo[i], "rowTwo");
-      if (rowOne[i] === rowTwo[i]) {
+      if (rowOne[i] == rowTwo[i]) {
         if (rowOne[i] == 0 && rowTwo[i] == 0) {
           return false;
         }
@@ -220,7 +224,10 @@ function canMoveUp() {
       }
     }
   }
-  return false;
+  if (rowsWithNums.length > 0) {
+    return false;
+  }
+  return true;
 }
 
 // function checkForGameOver() {
