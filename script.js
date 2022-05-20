@@ -189,15 +189,22 @@ function hasEmptyTile() {
 
 function canMoveUp() {
   let canMove = true;
-  let rowsWithNums = rows.filter((row, index) => {
+  let rowsWithNums = board.filter((row, i) => {
+    console.log(row, "row");
     let zero = 0;
-    if (row[i] === 0) {
-      zero + 1;
+    for (let r = 0; r < row.length; r++) {
+      if (row[r] == 0) {
+        zero + 1;
+      }
     }
-    if (zero != 4) {
+    console.log(zero, "zero");
+    if (zero < 4) {
       return row;
     }
+    return;
   });
+  console.log(rowsWithNums, "rowsWithNums");
+
   for (let r = 0; r < rows; r++) {
     let rowOne = board[r];
 
@@ -207,7 +214,7 @@ function canMoveUp() {
       console.log(rowOne[i], "rowOne");
       console.log(rowTwo[i], "rowTwo");
       if (rowOne[i] === rowTwo[i]) {
-        if (rowOne[i] === 0 && rowTwo[i] === 0) {
+        if (rowOne[i] == 0 && rowTwo[i] == 0) {
           return false;
         }
         return true;
