@@ -208,8 +208,8 @@ function canMoveVertical() {
     }
   });
 
-  if (rowsWithNums.length > 0) {
-    return false;
+  if (rowsWithNums.length === 1) {
+    return true;
   }
   console.log(rowsWithNums, "rowsWithNums");
   for (let r = 0; r < rows.length - 1; r++) {
@@ -228,7 +228,7 @@ function canMoveVertical() {
       }
     }
   }
-  return true;
+  return false;
 }
 
 // function checkForGameOver() {
