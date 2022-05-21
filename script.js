@@ -59,14 +59,17 @@ document.addEventListener("keyup", (e) => {
     setTwo();
   } else if (e.code == "ArrowUp") {
     slideUp();
-    let canMove = canMoveUp();
+    let canMove = canMoveVertical();
     console.log(canMove);
     if (canMove) {
       setTwo();
     }
   } else if (e.code == "ArrowDown") {
     slideDown();
-    setTwo();
+    let canMoveDown = canMoveVertical();
+    if (canMoveDown) {
+      setTwo();
+    }
   }
   document.getElementById("score").innerText = score;
 });
@@ -189,13 +192,10 @@ function hasEmptyTile() {
   return false;
 }
 
-function canMoveUp() {
+function canMoveVertical() {
   let canMove = true;
   let rowsWithNums = board.filter((row) => {
     console.log(row, "row");
-    if (rowsWithNums.length > 0) {
-      return false;
-    }
     let zero = 0;
     for (let r = 0; r < row.length; r++) {
       if (row[r] == 0) {
@@ -207,6 +207,10 @@ function canMoveUp() {
       return row;
     }
   });
+
+  if (rowsWithNums.length > 0) {
+    return false;
+  }
   console.log(rowsWithNums, "rowsWithNums");
   for (let r = 0; r < rows.length - 1; r++) {
     let rowOne = rowsWithNums[r];
@@ -223,9 +227,6 @@ function canMoveUp() {
         return true;
       }
     }
-  }
-  if (rowsWithNums.length > 0) {
-    return false;
   }
   return true;
 }
