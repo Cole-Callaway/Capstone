@@ -207,7 +207,7 @@ function canMoveVertical() {
       return row;
     }
   });
-  //this could be whats is causing bug
+  //this could be whats is causing the bug
   if (rowsWithNums.length === 1) {
     return true;
   }
@@ -220,7 +220,7 @@ function canMoveVertical() {
     for (let i = 0; i < rowOne.length - 1; i++) {
       // console.log(rowOne[i], "rowOne");
       // console.log(rowTwo[i], "rowTwo");
-      //this could be whats is causing bug
+      //this could be whats is causing the bug
       if (rowOne[i] == rowTwo[i]) {
         if (rowOne[i] == 0 && rowTwo[i] == 0) {
           return false;
