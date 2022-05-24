@@ -20,7 +20,7 @@ app.get("/styles", (req, res) => {
 });
 
 const handler = (req, res) => {
-  console.log("hit the end point");
+  res.status(200).send("hit the end point");
 };
 
 app.get("/api/test", handler);
