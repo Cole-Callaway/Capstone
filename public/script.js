@@ -8,10 +8,10 @@ window.onload = function () {
 
 function setGame() {
   // board = [
-  //   [2, 2, 2, 2],
-  //   [2, 2, 2, 2],
-  //   [4, 4, 8, 8],
-  //   [4, 4, 8, 8],
+  //   [2, 4, 2, 4],
+  //   [4, 2, 4, 2],
+  //   [8, 4, 8, 16],
+  //   [4, 8, 16, 32],
   // ];
 
   board = [
@@ -53,19 +53,32 @@ function updateTile(tile, num) {
 document.addEventListener("keyup", (e) => {
   if (e.code == "ArrowLeft") {
     slideLeft();
-    setTwo();
+    checkForGameOver();
+    let canMove = canMoveHorizontally();
+    console.log(canMove, "canMoveHorizontally");
+    if (canMove) {
+      setTwo();
+    }
   } else if (e.code == "ArrowRight") {
     slideRight();
-    setTwo();
+    checkForGameOver();
+    let canMove = canMoveHorizontally();
+    console.log(canMove, "canMoveHorizontally");
+    if (canMove) {
+      setTwo();
+    }
   } else if (e.code == "ArrowUp") {
     slideUp();
+    checkForGameOver();
     let canMove = canMoveVertical();
-    console.log(canMove);
+    console.log(canMove, "canMoveVertical");
     if (canMove) {
       setTwo();
     }
   } else if (e.code == "ArrowDown") {
     slideDown();
+    checkForGameOver();
+
     let canMoveDown = canMoveVertical();
     if (canMoveDown) {
       setTwo();
@@ -195,14 +208,14 @@ function hasEmptyTile() {
 function canMoveVertical() {
   let canMove = true;
   let rowsWithNums = board.filter((row) => {
-    console.log(row, "row");
+    // console.log(row, "row");
     let zero = 0;
     for (let r = 0; r < row.length; r++) {
       if (row[r] == 0) {
         zero = zero + 1;
       }
     }
-    console.log(zero, "zero");
+    console.log(zero, "canMoveVertical zero");
     if (zero != 4) {
       return row;
     }
@@ -232,14 +245,47 @@ function canMoveVertical() {
   return false;
 }
 
-// function checkForGameOver() {
-//   let zeros = 0;
-//   for (let r = 0; r < rows; r++) {
-//     for (let c = 0; c < columns; c++) {
-//       if (zeros === null) {
-//         alert("Game Over");
-//         document.removeEventListener("keyup");
-//       }
-//     }
-//   }
-// }
+function canMoveHorizontally() {
+  let canMove = true;
+  let columnsWithNums = board.filter((column) => {
+    let zero = 0;
+    for (let c = 0; c < columns.length; c++) {
+      if (board[c] == 0) {
+        zero = zero + 1;
+      }
+      console.log(zero, "canMoveHorizontally zero");
+      if (zero !== 4) {
+        return column;
+      }
+    }
+  });
+  if (columnsWithNums.length === 1) {
+    return true;
+  }
+  for (let c = 0; c < columns.length - 1; c++) {
+    let columnOne = columnsWithNums[c];
+    let columnTwo = columnsWithNums[c + 1];
+
+    for (let i = 0; i < columnOne.length - 1; i++) {
+      if (columnOne[i] == columnTwo[i]) {
+        if (columnOne[i] == 0 && columnTwo[i] == 0) {
+          return false;
+        }
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function checkForGameOver() {
+  let count = 0;
+  for (let r = 0; r < rows.length - 1; r++) {
+    for (let c = 0; c < columns.length; c++) {
+      if (board[r][c] == 0 && row[i] == row[i + 1]) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
