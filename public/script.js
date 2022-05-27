@@ -248,23 +248,27 @@ function canMoveVertical() {
 function canMoveHorizontally() {
   let canMove = true;
   let columnsWithNums = board.filter((column) => {
+    console.log(column, "column");
     let zero = 0;
-    for (let c = 0; c < columns.length; c++) {
-      if (board[c] == 0) {
+    for (let c = 0; c < column.length; c++) {
+      if (column[c] == 0) {
         zero = zero + 1;
       }
-      console.log(zero, "canMoveHorizontally zero");
+
       if (zero !== 4) {
         return column;
       }
     }
+    console.log(zero, "canMoveHorizontally zero");
   });
   if (columnsWithNums.length === 1) {
     return true;
   }
   for (let c = 0; c < columns.length - 1; c++) {
     let columnOne = columnsWithNums[c];
+    console.log(columnOne, "canMoveHorizontally");
     let columnTwo = columnsWithNums[c + 1];
+    console.log(columnTwo, "canMoveHorizontally");
 
     for (let i = 0; i < columnOne.length - 1; i++) {
       if (columnOne[i] == columnTwo[i]) {
