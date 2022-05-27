@@ -18,8 +18,8 @@ hr {
 #board {
   width: 700px;
   height: 700px;
-  background-color: #cdc1b5;
-  border: 6px solid #bbada0;
+  background-color: #5f5c59;
+  border: 6px solid #2a2927;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -28,7 +28,7 @@ hr {
 .tile {
   width: 165px;
   height: 165px;
-  border: 5px solid #bbada0;
+  border: 5px solid #3e3628;
   font-size: 40px;
   font-weight: bold;
   display: flex;
@@ -37,7 +37,7 @@ hr {
 }
 /* colors*/
 .x2 {
-  background-color: #daf1fb;
+  background-color: #abcded;
   color: white;
 }
 
