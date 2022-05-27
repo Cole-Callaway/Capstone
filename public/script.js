@@ -52,32 +52,33 @@ function updateTile(tile, num) {
 
 document.addEventListener("keyup", (e) => {
   if (e.code == "ArrowLeft") {
-    slideLeft();
     checkForGameOver();
+    slideLeft();
     let canMove = canMoveHorizontally();
     console.log(canMove, "canMoveHorizontally");
     if (canMove) {
       setTwo();
     }
   } else if (e.code == "ArrowRight") {
-    slideRight();
     checkForGameOver();
+    slideRight();
     let canMove = canMoveHorizontally();
     console.log(canMove, "canMoveHorizontally");
     if (canMove) {
       setTwo();
     }
   } else if (e.code == "ArrowUp") {
-    slideUp();
     checkForGameOver();
+    slideUp();
+
     let canMove = canMoveVertical();
     console.log(canMove, "canMoveVertical");
     if (canMove) {
       setTwo();
     }
   } else if (e.code == "ArrowDown") {
-    slideDown();
     checkForGameOver();
+    slideDown();
 
     let canMoveDown = canMoveVertical();
     if (canMoveDown) {
@@ -208,7 +209,7 @@ function hasEmptyTile() {
 function canMoveVertical() {
   let canMove = true;
   let rowsWithNums = board.filter((row) => {
-    // console.log(row, "row");
+    console.log(row, "row");
     let zero = 0;
     for (let r = 0; r < row.length; r++) {
       if (row[r] == 0) {
@@ -264,13 +265,15 @@ function canMoveHorizontally() {
   if (columnsWithNums.length === 1) {
     return true;
   }
+  console.log(columnsWithNums, "columnsWithNums");
   for (let c = 0; c < columns.length - 1; c++) {
     let columnOne = columnsWithNums[c];
-    console.log(columnOne, "canMoveHorizontally");
+
     let columnTwo = columnsWithNums[c + 1];
-    console.log(columnTwo, "canMoveHorizontally");
 
     for (let i = 0; i < columnOne.length - 1; i++) {
+      console.log(columnOne[i], "columnOne");
+      console.log(columnTwo[i], "columnTwo");
       if (columnOne[i] == columnTwo[i]) {
         if (columnOne[i] == 0 && columnTwo[i] == 0) {
           return false;
