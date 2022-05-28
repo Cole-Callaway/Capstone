@@ -27,6 +27,11 @@ body {
   letter-spacing: 2px;
   color: white;
 }
+
+#new-game:active {
+  transform: scale(1.25, 1.25);
+}
+
 hr {
   width: 500px;
 }
