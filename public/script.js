@@ -2,11 +2,12 @@ let board;
 let score = 0;
 let rows = 4;
 let columns = 4;
-window.onload = function () {
-  setGame();
-};
+
+let newGameBtn = document.getElementById("new-game");
 
 function setGame() {
+  board = undefined;
+  document.getElementById("board").innerHTML = "";
   // board = [
   //   [2, 4, 2, 4],
   //   [4, 2, 4, 2],
@@ -35,6 +36,8 @@ function setGame() {
   setTwo();
   setTwo();
 }
+
+newGameBtn.addEventListener("click", setGame);
 
 function updateTile(tile, num) {
   tile.innerText = "";
@@ -258,12 +261,13 @@ function canMoveHorizontally() {
         zero = zero + 1;
       }
 
-      if (zero !== 4) {
+      if (zero != 4) {
         return column;
       }
     }
     console.log(zero, "canMoveHorizontally zero");
   });
+
   if (columnsWithNums.length === 1) {
     return true;
   }
