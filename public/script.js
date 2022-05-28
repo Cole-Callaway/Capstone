@@ -54,26 +54,28 @@ document.addEventListener("keyup", (e) => {
   if (e.code == "ArrowLeft") {
     checkForGameOver();
     slideLeft();
-    let canMove = canMoveHorizontally();
-    console.log(canMove, "canMoveHorizontally");
-    if (canMove) {
+
+    let canMoveLeft = canMoveHorizontally();
+    console.log(canMoveLeft, "canMoveHorizontally");
+    if (canMoveLeft) {
       setTwo();
     }
   } else if (e.code == "ArrowRight") {
     checkForGameOver();
     slideRight();
-    let canMove = canMoveHorizontally();
-    console.log(canMove, "canMoveHorizontally");
-    if (canMove) {
+
+    let canMoveRight = canMoveHorizontally();
+    console.log(canMoveRight, "canMoveHorizontally");
+    if (canMoveRight) {
       setTwo();
     }
   } else if (e.code == "ArrowUp") {
     checkForGameOver();
     slideUp();
 
-    let canMove = canMoveVertical();
-    console.log(canMove, "canMoveVertical");
-    if (canMove) {
+    let canMoveUp = canMoveVertical();
+    console.log(canMoveUp, "canMoveVertical");
+    if (canMoveUp) {
       setTwo();
     }
   } else if (e.code == "ArrowDown") {
