@@ -5,7 +5,14 @@ let columns = 4;
 
 let newGameBtn = document.getElementById("new-game");
 
-function setGame() {
+async function getBoard() {
+  await axios.get("/board").then((res) => {
+    board = res.data;
+  });
+}
+getBoard();
+
+async function setGame() {
   document.getElementById("board").innerHTML = "";
   // board = [
   //   [2, 4, 2, 4],
@@ -14,12 +21,12 @@ function setGame() {
   //   [4, 8, 16, 32],
   // ];
 
-  board = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ];
+  // board = [
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  // ];
 
   console.log(board);
   for (let r = 0; r < rows; r++) {

@@ -5,6 +5,8 @@ const path = require("path");
 
 const { SERVER_PORT } = process.env;
 
+const boardController = require("./controller");
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -22,6 +24,10 @@ app.get("/styles.css", (req, res) => {
 const handler = (req, res) => {
   res.status(200).send("hit the end point");
 };
+
+app.get("/board", boardController.getBoard);
+
+app.post("/board", boardController.postBoard);
 
 app.get("/api/test", handler);
 
