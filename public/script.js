@@ -6,7 +6,6 @@ let columns = 4;
 let newGameBtn = document.getElementById("new-game");
 
 function setGame() {
-  board = undefined;
   document.getElementById("board").innerHTML = "";
   // board = [
   //   [2, 4, 2, 4],
