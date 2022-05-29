@@ -1,7 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  height: 100%;
+  /* min-height: 100%; */
   background: linear-gradient(
     107.56deg,
     #47c44c 12.89%,
@@ -9,6 +9,9 @@ body {
     rgba(50, 115, 151, 0.89) 64.61%,
     rgba(114, 28, 255, 0.74) 100%
   );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 #new-game {

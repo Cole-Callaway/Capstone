@@ -62,20 +62,61 @@ function updateTile(tile, num) {
       tile.classList.add("x8192");
     }
   }
-  let intailBoardState = [
+  let initialBoardState = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
   ];
-  if (board !== intailBoardState) {
+  if (board !== initialBoardState) {
     axios.post("/board", { board });
   }
 }
 
+function canMoveVertical() {
+  let canMove = true;
+  let rowsWithNums = board.filter((row) => {
+    console.log(row, "row");
+    let zero = 0;
+    for (let r = 0; r < row.length; r++) {
+      if (row[r] == 0) {
+        zero = zero + 1;
+      }
+    }
+    console.log(zero, "canMoveVertical zero");
+    if (zero != 4) {
+      return row;
+    }
+  });
+
+  if (rowsWithNums.length === 1) {
+    return true;
+  }
+  console.log(rowsWithNums, "rowsWithNums");
+  for (let r = 0; r < rows.length - 1; r++) {
+    let rowOne = rowsWithNums[r];
+    let rowTwo = rowsWithNums[r + 1];
+
+    for (let i = 0; i < rowOne.length - 1; i++) {
+      if (rowOne[i] == rowTwo[i]) {
+        if (rowOne[i] == 0 && rowTwo[i] == 0) {
+          return false;
+        }
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 document.addEventListener("keyup", (e) => {
+  let gameOver = checkForGameOver();
+  console.log(gameOver);
+  if (gameOver) {
+    alert("Game Over");
+    return;
+  }
   if (e.code == "ArrowLeft") {
-    checkForGameOver();
     slideLeft();
 
     let canMoveLeft = canMoveHorizontally();
@@ -84,7 +125,6 @@ document.addEventListener("keyup", (e) => {
       setTwo();
     }
   } else if (e.code == "ArrowRight") {
-    checkForGameOver();
     slideRight();
 
     let canMoveRight = canMoveHorizontally();
@@ -92,8 +132,8 @@ document.addEventListener("keyup", (e) => {
     if (canMoveRight) {
       setTwo();
     }
-  } else if (e.code == "ArrowUp") {
     checkForGameOver();
+  } else if (e.code == "ArrowUp") {
     slideUp();
 
     let canMoveUp = canMoveVertical();
@@ -101,14 +141,15 @@ document.addEventListener("keyup", (e) => {
     if (canMoveUp) {
       setTwo();
     }
-  } else if (e.code == "ArrowDown") {
     checkForGameOver();
+  } else if (e.code == "ArrowDown") {
     slideDown();
 
     let canMoveDown = canMoveVertical();
     if (canMoveDown) {
       setTwo();
     }
+    checkForGameOver();
   }
   document.getElementById("score").innerText = score;
 });
@@ -166,10 +207,7 @@ function slideUp() {
   for (let c = 0; c < columns; c++) {
     let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
     row = slide(row);
-    // board[0][c] = row[0];
-    // board[1][c] = row[1];
-    // board[2][c] = row[2];
-    // board[3][c] = row[3];
+
     for (let r = 0; r < rows; r++) {
       board[r][c] = row[r];
       let tile = document.getElementById(r.toString() + "-" + c.toString());
@@ -185,10 +223,7 @@ function slideDown() {
     row.reverse();
     row = slide(row);
     row.reverse();
-    // board[0][c] = row[0];
-    // board[1][c] = row[1];
-    // board[2][c] = row[2];
-    // board[3][c] = row[3];
+
     for (let r = 0; r < rows; r++) {
       board[r][c] = row[r];
       let tile = document.getElementById(r.toString() + "-" + c.toString());
@@ -231,46 +266,6 @@ function hasEmptyTile() {
   return false;
 }
 
-function canMoveVertical() {
-  let canMove = true;
-  let rowsWithNums = board.filter((row) => {
-    console.log(row, "row");
-    let zero = 0;
-    for (let r = 0; r < row.length; r++) {
-      if (row[r] == 0) {
-        zero = zero + 1;
-      }
-    }
-    console.log(zero, "canMoveVertical zero");
-    if (zero != 4) {
-      return row;
-    }
-  });
-  //this could be whats is causing the bug
-  if (rowsWithNums.length === 1) {
-    return true;
-  }
-  console.log(rowsWithNums, "rowsWithNums");
-  for (let r = 0; r < rows.length - 1; r++) {
-    let rowOne = rowsWithNums[r];
-    let rowTwo = rowsWithNums[r + 1];
-    // console.log(rowOne, "rowOne");
-    // console.log(rowTwo, "rowTwo");
-    for (let i = 0; i < rowOne.length - 1; i++) {
-      // console.log(rowOne[i], "rowOne");
-      // console.log(rowTwo[i], "rowTwo");
-      //this could be whats is causing the bug
-      if (rowOne[i] == rowTwo[i]) {
-        if (rowOne[i] == 0 && rowTwo[i] == 0) {
-          return false;
-        }
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
 function canMoveHorizontally() {
   let canMove = true;
   let columnsWithNums = board.filter((column) => {
@@ -287,24 +282,24 @@ function canMoveHorizontally() {
     }
     console.log(zero, "canMoveHorizontally zero");
   });
-
+  console.log(columnsWithNums, "columnsWithNums");
   if (columnsWithNums.length === 1) {
     return true;
   }
-  console.log(columnsWithNums, "columnsWithNums");
-  for (let c = 0; c < columns.length - 1; c++) {
+
+  for (let c = 0; c < 3 - 1; c++) {
     let columnOne = columnsWithNums[c];
 
     let columnTwo = columnsWithNums[c + 1];
-
+    console.log("hit");
     for (let i = 0; i < columnOne.length - 1; i++) {
       console.log(columnOne[i], "columnOne");
       console.log(columnTwo[i], "columnTwo");
       if (columnOne[i] == columnTwo[i]) {
         if (columnOne[i] == 0 && columnTwo[i] == 0) {
-          return false;
+          return true;
         }
-        return true;
+        return false;
       }
     }
   }
@@ -313,12 +308,39 @@ function canMoveHorizontally() {
 
 function checkForGameOver() {
   let count = 0;
-  for (let r = 0; r < rows.length - 1; r++) {
-    for (let c = 0; c < columns.length; c++) {
-      if (board[r][c] == 0 && row[i] == row[i + 1]) {
-        return true;
+  let rowsWithNums = board.filter((row) => {
+    let zero = 0;
+    for (let r = 0; r < row.length; r++) {
+      if (row[r] == 0) {
+        zero = zero + 1;
       }
     }
+    if (zero != 4) {
+      return row;
+    }
+  });
+  console.log("hit");
+  // for (let r = 0; r < rows.length - 1; r++) {
+  //   for (let c = 0; c < columns.length - 1; c++) {
+  //     console.log(board[r][c], "hit");
+  //     if (board[r][c] === 0) {
+  //       return true;
+  //     }
+  //     if (rowsWithNums[r] === rowsWithNums[r + 1]) {
+  //       return true;
+  //     }
+  //   }
+  // }
+  let canMoveHorizontally;
+  canMoveHorizontally = this.canMoveHorizontally();
+  let canMoveVertical;
+  canMoveVertical = this.canMoveVertical();
+  let hasEmptyTile;
+  hasEmptyTile = this.hasEmptyTile();
+
+  if (!canMoveVertical && !canMoveHorizontally && !hasEmptyTile) {
+    return true;
   }
+
   return false;
 }
