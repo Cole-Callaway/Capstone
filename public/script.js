@@ -74,41 +74,6 @@ function updateTile(tile, num) {
   }
 }
 
-function canMoveVertical() {
-  let canMove = true;
-  let rowsWithNums = board.filter((row) => {
-    let zero = 0;
-    for (let r = 0; r < row.length; r++) {
-      if (row[r] == 0) {
-        zero = zero + 1;
-      }
-    }
-    if (zero != 4) {
-      return row;
-    }
-  });
-
-  if (rowsWithNums.length === 1) {
-    return true;
-  }
-
-  console.log(rowsWithNums, "rowsWithNums");
-  for (let r = 0; r < rows.length - 1; r++) {
-    let rowOne = rowsWithNums[r];
-    let rowTwo = rowsWithNums[r + 1];
-
-    for (let i = 0; i < rowOne.length - 1; i++) {
-      if (rowOne[i] == rowTwo[i]) {
-        if (rowOne[i] == 0 && rowTwo[i] == 0) {
-          return false;
-        }
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
 document.addEventListener("keyup", (e) => {
   let gameOver = checkForGameOver();
 
@@ -274,6 +239,41 @@ function hasEmptyTile() {
   return false;
 }
 
+function canMoveVertical() {
+  let canMove = true;
+  let rowsWithNums = board.filter((row) => {
+    let zero = 0;
+    for (let r = 0; r < row.length; r++) {
+      if (row[r] === 0) {
+        zero = zero + 1;
+      }
+    }
+    if (zero != 4) {
+      return row;
+    }
+  });
+
+  if (rowsWithNums.length === 1) {
+    return true;
+  }
+
+  console.log(rowsWithNums, "rowsWithNums");
+  for (let r = 0; r < rows.length - 1; r++) {
+    let rowOne = rowsWithNums[r];
+    let rowTwo = rowsWithNums[r + 1];
+
+    for (let i = 0; i < rowOne.length - 1; i++) {
+      if (rowOne[i] == rowTwo[i]) {
+        if (rowOne[i] == 0 && rowTwo[i] == 0) {
+          return false;
+        }
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 function canMoveHorizontally() {
   let canMove = true;
   let columnsWithNums = board.filter((column) => {
@@ -293,36 +293,14 @@ function canMoveHorizontally() {
     return true;
   }
   console.log(columnsWithNums, "columnsWithNums");
-  for (let c = 0; c < 4 - 1; c++) {
+  for (let c = 0; c < 3 - 1; c++) {
     let columnOne = columnsWithNums[c];
     let columnTwo = columnsWithNums[c + 1];
-    let columnThree = columnsWithNums[c + 2];
-    let columnFour = columnsWithNums[c + 3];
-    console.log(
-      columnOne,
-      "columnOne",
-      columnTwo,
-      "columnTwo",
-      columnThree,
-      "columnThree",
-      columnFour,
-      "columnFour"
-    );
+
+    console.log(columnOne, "columnOne", columnTwo, "columnTwo");
     for (let i = 0; i < columnOne.length - 1; i++) {
-      if (
-        columnOne[i] === columnTwo[i] ||
-        columnOne[i] === columnThree[i] ||
-        columnOne[i] === columnFour[i] ||
-        columnTwo[i] === columnThree[i] ||
-        columnTwo[i] === columnFour[i] ||
-        columnThree[i] === columnFour[i]
-      ) {
-        if (
-          columnOne[i] === 0 ||
-          columnTwo[i] === 0 ||
-          columnThree[i] === 0 ||
-          columnFour[i] === 0
-        ) {
+      if (columnOne[i] === columnTwo[i]) {
+        if (columnOne[i] === 0 && columnTwo[i] === 0) {
           return true;
         }
         return true;
