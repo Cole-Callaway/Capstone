@@ -83,7 +83,6 @@ function canMoveVertical() {
         zero = zero + 1;
       }
     }
-
     if (zero != 4) {
       return row;
     }
@@ -93,6 +92,7 @@ function canMoveVertical() {
     return true;
   }
 
+  console.log(rowsWithNums, "rowsWithNums");
   for (let r = 0; r < rows.length - 1; r++) {
     let rowOne = rowsWithNums[r];
     let rowTwo = rowsWithNums[r + 1];
@@ -278,8 +278,8 @@ function canMoveHorizontally() {
   let canMove = true;
   let columnsWithNums = board.filter((column) => {
     let zero = 0;
-    for (let c = 0; c < column.length; c++) {
-      if (column[c] == 0) {
+    for (let c = 0; c < columns; c++) {
+      if (column[c] === 0) {
         zero = zero + 1;
       }
 
@@ -292,8 +292,8 @@ function canMoveHorizontally() {
   if (columnsWithNums.length === 1) {
     return true;
   }
-
-  for (let c = 0; c < 3 - 1; c++) {
+  console.log(columnsWithNums, "columnsWithNums");
+  for (let c = 0; c < 4 - 1; c++) {
     let columnOne = columnsWithNums[c];
     let columnTwo = columnsWithNums[c + 1];
     let columnThree = columnsWithNums[c + 2];
@@ -310,22 +310,22 @@ function canMoveHorizontally() {
     );
     for (let i = 0; i < columnOne.length - 1; i++) {
       if (
-        columnOne[i] == columnTwo[i] ||
-        columnOne[i] == columnThree[i] ||
-        columnOne[i] == columnFour[i] ||
-        columnTwo[i] == columnThree[i] ||
-        columnTwo[i] == columnFour[i] ||
-        columnThree[i] == columnFour[i]
+        columnOne[i] === columnTwo[i] ||
+        columnOne[i] === columnThree[i] ||
+        columnOne[i] === columnFour[i] ||
+        columnTwo[i] === columnThree[i] ||
+        columnTwo[i] === columnFour[i] ||
+        columnThree[i] === columnFour[i]
       ) {
         if (
-          columnOne[i] == 0 ||
-          columnTwo[i] == 0 ||
-          columnThree[i] == 0 ||
-          columnFour[i] == 0
+          columnOne[i] === 0 ||
+          columnTwo[i] === 0 ||
+          columnThree[i] === 0 ||
+          columnFour[i] === 0
         ) {
           return true;
         }
-        return false;
+        return true;
       }
     }
   }
