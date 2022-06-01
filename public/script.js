@@ -112,7 +112,9 @@ document.addEventListener("keyup", (e) => {
   let gameOver = checkForGameOver();
 
   if (gameOver) {
-    alert("Game Over");
+    // alert("Game Over");
+    document.getElementById("board").innerHTML =
+      '<div class="gameOver"><h1  title="Game Over">Game Over</h1></div>';
 
     let newGameBtnReturn = document.createElement("button");
     newGameBtnReturn.id = "new-game";
