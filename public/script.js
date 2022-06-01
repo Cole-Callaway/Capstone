@@ -21,9 +21,9 @@ async function setGame() {
   document.getElementById("board").innerHTML = "";
   board = [
     [2, 4, 2, 4],
-    [4, 2, 4, 2],
-    [8, 4, 8, 16],
-    [4, 8, 16, 32],
+    [4, 16, 32, 2048],
+    [2, 4, 2, 64],
+    [128, 16, 8, 4],
   ];
 
   // board = [
@@ -43,6 +43,7 @@ async function setGame() {
       document.getElementById("board").append(tile);
     }
   }
+
   newGameBtn.remove();
   setTwo();
   setTwo();
@@ -112,7 +113,6 @@ document.addEventListener("keyup", (e) => {
   let gameOver = checkForGameOver();
 
   if (gameOver) {
-    // alert("Game Over");
     document.getElementById("board").innerHTML =
       '<div class="gameOver"><h1  title="Game Over">Game Over</h1></div>';
 
@@ -124,6 +124,7 @@ document.addEventListener("keyup", (e) => {
 
     return;
   }
+
   if (e.code == "ArrowLeft") {
     slideLeft();
 
