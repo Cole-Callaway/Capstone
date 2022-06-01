@@ -19,19 +19,19 @@ getBoard();
 
 async function setGame() {
   document.getElementById("board").innerHTML = "";
-  board = [
-    [2, 4, 2, 4],
-    [4, 16, 32, 2048],
-    [2, 4, 2, 64],
-    [128, 16, 8, 4],
-  ];
-
   // board = [
-  //   [0, 0, 0, 0],
-  //   [0, 0, 0, 0],
-  //   [0, 0, 0, 0],
-  //   [0, 0, 0, 0],
+  //   [2, 4, 2, 4],
+  //   [4, 16, 32, 2048],
+  //   [2, 4, 2, 64],
+  //   [128, 16, 8, 4],
   // ];
+
+  board = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+  ];
 
   // console.log(board);
   for (let r = 0; r < rows; r++) {
@@ -295,12 +295,34 @@ function canMoveHorizontally() {
 
   for (let c = 0; c < 3 - 1; c++) {
     let columnOne = columnsWithNums[c];
-
     let columnTwo = columnsWithNums[c + 1];
-
+    let columnThree = columnsWithNums[c + 2];
+    let columnFour = columnsWithNums[c + 3];
+    console.log(
+      columnOne,
+      "columnOne",
+      columnTwo,
+      "columnTwo",
+      columnThree,
+      "columnThree",
+      columnFour,
+      "columnFour"
+    );
     for (let i = 0; i < columnOne.length - 1; i++) {
-      if (columnOne[i] == columnTwo[i]) {
-        if (columnOne[i] == 0 && columnTwo[i] == 0) {
+      if (
+        columnOne[i] == columnTwo[i] ||
+        columnOne[i] == columnThree[i] ||
+        columnOne[i] == columnFour[i] ||
+        columnTwo[i] == columnThree[i] ||
+        columnTwo[i] == columnFour[i] ||
+        columnThree[i] == columnFour[i]
+      ) {
+        if (
+          columnOne[i] == 0 ||
+          columnTwo[i] == 0 ||
+          columnThree[i] == 0 ||
+          columnFour[i] == 0
+        ) {
           return true;
         }
         return false;
