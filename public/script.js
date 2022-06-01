@@ -19,21 +19,21 @@ getBoard();
 
 async function setGame() {
   document.getElementById("board").innerHTML = "";
-  // board = [
-  //   [2, 4, 2, 4],
-  //   [4, 2, 4, 2],
-  //   [8, 4, 8, 16],
-  //   [4, 8, 16, 32],
-  // ];
-
   board = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
+    [2, 4, 2, 4],
+    [4, 2, 4, 2],
+    [8, 4, 8, 16],
+    [4, 8, 16, 32],
   ];
 
-  console.log(board);
+  // board = [
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  //   [0, 0, 0, 0],
+  // ];
+
+  // console.log(board);
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       let tile = document.createElement("div");
@@ -43,7 +43,7 @@ async function setGame() {
       document.getElementById("board").append(tile);
     }
   }
-
+  newGameBtn.remove();
   setTwo();
   setTwo();
 }
@@ -76,14 +76,13 @@ function updateTile(tile, num) {
 function canMoveVertical() {
   let canMove = true;
   let rowsWithNums = board.filter((row) => {
-    console.log(row, "row");
     let zero = 0;
     for (let r = 0; r < row.length; r++) {
       if (row[r] == 0) {
         zero = zero + 1;
       }
     }
-    console.log(zero, "canMoveVertical zero");
+
     if (zero != 4) {
       return row;
     }
@@ -92,7 +91,7 @@ function canMoveVertical() {
   if (rowsWithNums.length === 1) {
     return true;
   }
-  console.log(rowsWithNums, "rowsWithNums");
+
   for (let r = 0; r < rows.length - 1; r++) {
     let rowOne = rowsWithNums[r];
     let rowTwo = rowsWithNums[r + 1];
@@ -111,9 +110,16 @@ function canMoveVertical() {
 
 document.addEventListener("keyup", (e) => {
   let gameOver = checkForGameOver();
-  console.log(gameOver);
+
   if (gameOver) {
     alert("Game Over");
+
+    let newGameBtnReturn = document.createElement("button");
+    newGameBtnReturn.id = "new-game";
+    newGameBtnReturn.innerText = "New Game";
+    document.querySelector("body").append(newGameBtnReturn);
+    newGameBtnReturn.addEventListener("click", setGame);
+
     return;
   }
   if (e.code == "ArrowLeft") {
@@ -243,7 +249,6 @@ function setTwo() {
     let r = Math.floor(Math.random() * rows);
     let c = Math.floor(Math.random() * columns);
     if (board[r][c] == 0) {
-      // checkForGameOver();
       board[r][c] = 2;
       let tile = document.getElementById(r.toString() + "-" + c.toString());
       tile.innerText = "2";
@@ -269,7 +274,6 @@ function hasEmptyTile() {
 function canMoveHorizontally() {
   let canMove = true;
   let columnsWithNums = board.filter((column) => {
-    console.log(column, "column");
     let zero = 0;
     for (let c = 0; c < column.length; c++) {
       if (column[c] == 0) {
@@ -280,9 +284,8 @@ function canMoveHorizontally() {
         return column;
       }
     }
-    console.log(zero, "canMoveHorizontally zero");
   });
-  console.log(columnsWithNums, "columnsWithNums");
+
   if (columnsWithNums.length === 1) {
     return true;
   }
@@ -291,10 +294,8 @@ function canMoveHorizontally() {
     let columnOne = columnsWithNums[c];
 
     let columnTwo = columnsWithNums[c + 1];
-    console.log("hit");
+
     for (let i = 0; i < columnOne.length - 1; i++) {
-      console.log(columnOne[i], "columnOne");
-      console.log(columnTwo[i], "columnTwo");
       if (columnOne[i] == columnTwo[i]) {
         if (columnOne[i] == 0 && columnTwo[i] == 0) {
           return true;
@@ -319,18 +320,7 @@ function checkForGameOver() {
       return row;
     }
   });
-  console.log("hit");
-  // for (let r = 0; r < rows.length - 1; r++) {
-  //   for (let c = 0; c < columns.length - 1; c++) {
-  //     console.log(board[r][c], "hit");
-  //     if (board[r][c] === 0) {
-  //       return true;
-  //     }
-  //     if (rowsWithNums[r] === rowsWithNums[r + 1]) {
-  //       return true;
-  //     }
-  //   }
-  // }
+
   let canMoveHorizontally;
   canMoveHorizontally = this.canMoveHorizontally();
   let canMoveVertical;
