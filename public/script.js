@@ -110,19 +110,19 @@ document.addEventListener("keyup", (e) => {
   } else if (e.code == "ArrowUp") {
     slideUp();
 
-    let canMoveUp = canMoveVertical();
-    console.log(canMoveUp, "canMoveVertical");
-    if (canMoveUp) {
-      setTwo();
-    }
+    // // let canMoveUp = canMoveVertical();
+    // console.log(canMoveUp, "canMoveVertical");
+    // if (canMoveUp) {
+    // }
+    setTwo();
     checkForGameOver();
   } else if (e.code == "ArrowDown") {
     slideDown();
 
-    let canMoveDown = canMoveVertical();
-    if (canMoveDown) {
-      setTwo();
-    }
+    // let canMoveDown = canMoveVertical();
+    // if (canMoveDown) {
+    // }
+    setTwo();
     checkForGameOver();
   }
   document.getElementById("score").innerText = score;
@@ -277,8 +277,8 @@ function canMoveVertical() {
 function canMoveHorizontally() {
   let canMove = true;
   let columnsWithNums = board.filter((column) => {
-    let zero = 0;
     for (let c = 0; c < columns; c++) {
+      let zero = 0;
       if (column[c] === 0) {
         zero = zero + 1;
       }
