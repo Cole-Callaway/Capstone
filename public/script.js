@@ -33,7 +33,6 @@ async function setGame() {
     [0, 0, 0, 0],
   ];
 
-  // console.log(board);
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       let tile = document.createElement("div");
