@@ -21,14 +21,14 @@ The game is won when a tile with a value of 2048 appears on the board. Players c
 ## Screenshots
 
 Main Screen
-![Main Screen](/screenshots/Main%20Screen.png?raw=true)
+![Main Screen](/screenshots)
 
 ---
 
 Game Board loaded
-![Game Board Loaded](/screenshots/Game%20Loaded.png?raw=true)
+![Game Board Loaded](/screenshots)
 
 ---
 
 Game Over
-![Game over screen](/screenshots/Game%20over.png?raw=true)
+![Game over screen](/screenshots)
