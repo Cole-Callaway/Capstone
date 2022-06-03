@@ -1,5 +1,7 @@
 # 2048
 
+---
+
 This is my clone of the game 2048 just with different styles than the original game. For those that don't know what the game of 2048 is here is a overview of how it's played.
 
 2048 is played on a plain 4×4 grid, with numbered tiles that slide when a player moves them using the four arrow keys. Every turn, a new tile randomly appears in an empty spot on the board with a value of either 2 or 4. Tiles slide as far as possible in the chosen direction until they are stopped by either another tile or the edge of the grid. If two tiles of the same number collide while moving, they will merge into a tile with the total value of the two tiles that collided. The resulting tile cannot merge with another tile again in the same move.
