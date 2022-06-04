@@ -4,7 +4,7 @@ let rows = 4;
 let columns = 4;
 
 let newGameBtn = document.getElementById("new-game");
-
+let newGameBtnReturn = document.getElementById("new-game");
 async function getBoard() {
   await axios
     .get("/board")
@@ -44,6 +44,7 @@ async function setGame() {
   }
 
   newGameBtn.remove();
+  newGameBtnReturn.remove();
   setTwo();
   setTwo();
 }
