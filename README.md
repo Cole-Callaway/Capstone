@@ -13,6 +13,7 @@ The game is won when a tile with a value of 2048 appears on the board. Players c
 - HTML
 - CSS
 - JS
+- Node.js
 - Express
 - Cors
 - Axios
