@@ -19,12 +19,6 @@ getBoard();
 
 async function setGame() {
   document.getElementById("board").innerHTML = "";
-  // board = [
-  //   [2, 4, 2, 4],
-  //   [4, 16, 32, 128],
-  //   [2, 4, 2, 64],
-  //   [128, 16, 8, 4],
-  // ];
 
   board = [
     [0, 0, 0, 0],
