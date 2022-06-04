@@ -21,7 +21,7 @@ async function setGame() {
   document.getElementById("board").innerHTML = "";
   // board = [
   //   [2, 4, 2, 4],
-  //   [4, 16, 32, 2048],
+  //   [4, 16, 32, 128],
   //   [2, 4, 2, 64],
   //   [128, 16, 8, 4],
   // ];
@@ -92,19 +92,19 @@ document.addEventListener("keyup", (e) => {
   if (e.code == "ArrowLeft") {
     slideLeft();
 
-    let canMoveLeft = canMoveHorizontally();
-    console.log(canMoveLeft, "canMoveHorizontally");
-    if (canMoveLeft) {
-      setTwo();
-    }
+    // let canMoveLeft = canMoveHorizontally();
+    // console.log(canMoveLeft, "canMoveHorizontally");
+    // if (canMoveLeft) {
+    // }
+    setTwo();
   } else if (e.code == "ArrowRight") {
     slideRight();
 
-    let canMoveRight = canMoveHorizontally();
-    console.log(canMoveRight, "canMoveHorizontally");
-    if (canMoveRight) {
-      setTwo();
-    }
+    // let canMoveRight = canMoveHorizontally();
+    // console.log(canMoveRight, "canMoveHorizontally");
+    // if (canMoveRight) {
+    // }
+    setTwo();
     checkForGameOver();
   } else if (e.code == "ArrowUp") {
     slideUp();
