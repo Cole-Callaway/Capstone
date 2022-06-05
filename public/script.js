@@ -20,6 +20,13 @@ getBoard();
 async function setGame() {
   document.getElementById("board").innerHTML = "";
 
+  // board = [
+  //   [2, 4, 2, 4],
+  //   [4, 16, 32, 128],
+  //   [2, 4, 2, 64],
+  //   [128, 16, 8, 4],
+  // ];
+
   board = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -87,36 +94,36 @@ document.addEventListener("keyup", (e) => {
   if (e.code == "ArrowLeft") {
     slideLeft();
 
-    // let canMoveLeft = canMoveHorizontally();
-    // console.log(canMoveLeft, "canMoveHorizontally");
-    // if (canMoveLeft) {
-    // }
-    setTwo();
+    let canMoveLeft = canMoveHorizontally();
+    console.log(canMoveLeft, "canMoveHorizontally");
+    if (canMoveLeft) {
+      setTwo();
+    }
   } else if (e.code == "ArrowRight") {
     slideRight();
 
-    // let canMoveRight = canMoveHorizontally();
-    // console.log(canMoveRight, "canMoveHorizontally");
-    // if (canMoveRight) {
-    // }
-    setTwo();
+    let canMoveRight = canMoveHorizontally();
+    console.log(canMoveRight, "canMoveHorizontally");
+    if (canMoveRight) {
+      setTwo();
+    }
     checkForGameOver();
   } else if (e.code == "ArrowUp") {
     slideUp();
 
-    // // let canMoveUp = canMoveVertical();
-    // console.log(canMoveUp, "canMoveVertical");
-    // if (canMoveUp) {
-    // }
-    setTwo();
+    let canMoveUp = canMoveVertical();
+    console.log(canMoveUp, "canMoveVertical");
+    if (canMoveUp) {
+      setTwo();
+    }
     checkForGameOver();
   } else if (e.code == "ArrowDown") {
     slideDown();
 
-    // let canMoveDown = canMoveVertical();
-    // if (canMoveDown) {
-    // }
-    setTwo();
+    let canMoveDown = canMoveVertical();
+    if (canMoveDown) {
+      setTwo();
+    }
     checkForGameOver();
   }
   document.getElementById("score").innerText = score;
